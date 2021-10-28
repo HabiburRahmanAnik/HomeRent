@@ -1,0 +1,36 @@
+﻿
+
+@{
+    ViewBag.Title = "User List";
+}
+
+<h2>UserList</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Type</th>
+            <th>Action</th>
+        </tr>
+        
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Anik</td>
+            <td>anik@gmail.com</td>
+            <td>admin</td>
+            <td>
+                <a href="/admin/edit/id?" class="btn btn-info">Edit</a>
+                <a href="/admin/delete/id?" class="btn btn-danger">Delete</a>
+                <a href="/admin/block/id?" class="btn btn-warning">Block</a>
+                <a href="/admin/viewDetails/id?" class="btn btn-success">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
