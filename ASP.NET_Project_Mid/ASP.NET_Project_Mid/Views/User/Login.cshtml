@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+
+<form>
+    Email:<input type="email" name="Email" class="form-control" />
+    Password:<input type="password" name="Password" class="form-control" />
+    Type: <select name="Type" class="form-control">
+        <option value="2">Owner</option>
+        <option value="3">Customer</option>
+    </select><br />
+    <input type="submit" value="Login" class="btn btn-primary" /><br /><br />
+    <spana>New User? <a href="/Registration" class="text-info">Registration</a></spana>
+    </form>
