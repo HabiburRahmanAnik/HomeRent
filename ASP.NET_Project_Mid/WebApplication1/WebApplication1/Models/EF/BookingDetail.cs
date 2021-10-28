@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace WebApplication1.Models.EF
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Booking
+    public partial class BookingDetail
     {
+        public int ID { get; set; }
+        public int FlatID { get; set; }
         public int BookingId { get; set; }
-        public int UserId { get; set; }
-        public int FlatId { get; set; }
+        public int Rent { get; set; }
     
-        public virtual Flat Flat { get; set; }
-        public virtual User User { get; set; }
-        public virtual BookingDetail BookingDetail { get; set; }
+        public virtual BookingDetail BookingDetails1 { get; set; }
+        public virtual BookingDetail BookingDetail1 { get; set; }
     }
 }

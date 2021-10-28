@@ -7,29 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace WebApplication1.Models.EF
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Flat
     {
-        public User()
+        public Flat()
         {
             this.Bookings = new HashSet<Booking>();
-            this.Flats = new HashSet<Flat>();
         }
     
+        public int FlatId { get; set; }
+        public string FlatSize { get; set; }
+        public string Location { get; set; }
+        public string RoomDetails { get; set; }
+        public string Rent { get; set; }
         public int UserId { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public int Phone { get; set; }
-        public string Address { get; set; }
-        public string Image { get; set; }
-        public int Type { get; set; }
     
         public virtual ICollection<Booking> Bookings { get; set; }
-        public virtual ICollection<Flat> Flats { get; set; }
+        public virtual User User { get; set; }
     }
 }

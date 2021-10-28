@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HomeRentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="FlatId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Flat" Relationship="Self.FK_Booking_Flats" FromRole="Booking" ToRole="Flats" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Booking_Users" FromRole="Booking" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="BookingDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="FlatID" Type="Int32" Nullable="false" />
+    <Property Name="BookingId" Type="Int32" Nullable="false" />
+    <Property Name="Rent" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BookingDetails1" Relationship="Self.FK_BookingDetails_BookingDetails" FromRole="BookingDetails" ToRole="BookingDetails1" />
+    <NavigationProperty Name="BookingDetail1" Relationship="Self.FK_BookingDetails_BookingDetails" FromRole="BookingDetails1" ToRole="BookingDetails" />
+  </EntityType>
+  <EntityType Name="Flat">
+    <Key>
+      <PropertyRef Name="FlatId" />
+    </Key>
+    <Property Name="FlatId" Type="Int32" Nullable="false" />
+    <Property Name="FlatSize" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="RoomDetails" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Rent" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Flats" FromRole="Flats" ToRole="Booking" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Flats_Users" FromRole="Flats" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Users" FromRole="Users" ToRole="Booking" />
+    <NavigationProperty Name="Flats" Relationship="Self.FK_Flats_Users" FromRole="Users" ToRole="Flats" />
+  </EntityType>
+  <Association Name="FK_Booking_Flats">
+    <End Role="Flats" Type="Self.Flat" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flats">
+        <PropertyRef Name="FlatId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="FlatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingDetails_BookingDetails">
+    <End Role="BookingDetails" Type="Self.BookingDetail" Multiplicity="1" />
+    <End Role="BookingDetails1" Type="Self.BookingDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BookingDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BookingDetails1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flats_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Flats" Type="Self.Flat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Flats">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HomeRentEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bookings" EntityType="Self.Booking" />
+    <EntitySet Name="BookingDetails" EntityType="Self.BookingDetail" />
+    <EntitySet Name="Flats" EntityType="Self.Flat" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Booking_Flats" Association="Self.FK_Booking_Flats">
+      <End Role="Flats" EntitySet="Flats" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_Users" Association="Self.FK_Booking_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingDetails_BookingDetails" Association="Self.FK_BookingDetails_BookingDetails">
+      <End Role="BookingDetails" EntitySet="BookingDetails" />
+      <End Role="BookingDetails1" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flats_Users" Association="Self.FK_Flats_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Flats" EntitySet="Flats" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

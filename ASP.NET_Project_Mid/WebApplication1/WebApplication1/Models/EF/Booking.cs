@@ -7,27 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace WebApplication1.Models.EF
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Flat
+    public partial class Booking
     {
-        public Flat()
-        {
-            this.Bookings = new HashSet<Booking>();
-        }
-    
-        public int FlatId { get; set; }
-        public string FlatSize { get; set; }
-        public string Location { get; set; }
-        public string RoomDetails { get; set; }
-        public string Rent { get; set; }
+        public int BookingId { get; set; }
         public int UserId { get; set; }
+        public int FlatId { get; set; }
     
-        public virtual ICollection<Booking> Bookings { get; set; }
-        public virtual BookingDetail BookingDetail { get; set; }
+        public virtual Flat Flat { get; set; }
         public virtual User User { get; set; }
     }
 }

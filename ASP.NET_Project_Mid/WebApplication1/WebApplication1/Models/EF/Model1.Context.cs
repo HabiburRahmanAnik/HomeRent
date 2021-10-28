@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace WebApplication1.Models.EF
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HomeRentEntities : DbContext
+    public partial class HomeRentEntities1 : DbContext
     {
-        public HomeRentEntities()
-            : base("name=HomeRentEntities")
+        public HomeRentEntities1()
+            : base("name=HomeRentEntities1")
         {
         }
     
@@ -28,7 +28,6 @@ namespace WebApplication1.Models
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<BookingDetail> BookingDetails { get; set; }
         public DbSet<Flat> Flats { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }
