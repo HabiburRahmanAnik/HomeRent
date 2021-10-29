@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a34e29563acc45b8bfefcbb7ed0dfb44" Name="Diagram1">
+      <Diagram DiagramId="53e76629e97d423b88dfa5c0116847b2" Name="Diagram1">
         <EntityTypeShape EntityType="HomeRentModel.Booking" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HomeRentModel.BookingDetail" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HomeRentModel.Flat" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HomeRentModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeRentModel.User" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeRentModel.User" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
         <AssociationConnector Association="HomeRentModel.FK_Booking_Flats" ManuallyRouted="false" />
         <AssociationConnector Association="HomeRentModel.FK_Booking_Users" ManuallyRouted="false" />
         <AssociationConnector Association="HomeRentModel.FK_BookingDetails_Booking" ManuallyRouted="false" />

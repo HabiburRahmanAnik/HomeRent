@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -43,28 +44,133 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult ViewDetails(int id)
         {
-            using(HomeRentEntities db = new HomeRentEntities())
-            {
-                var u = (from us in db.Users
-                         where us.UserId == id
-                         select us).First();
-                return View(u);
-            }
+            HomeRentEntities db = new HomeRentEntities();
+
+            var us = (from u in db.Users
+                      where u.UserId == id
+                      select u).First();
+            return View(us);
         }
 
         public ActionResult Delete(int id)
         {
-           using (HomeRentEntities db = new HomeRentEntities())
+            using (HomeRentEntities db = new HomeRentEntities())
             {
                 User us = (from u in db.Users
-                          where u.UserId == id
-                          select u).FirstOrDefault();
+                           where u.UserId == id
+                           select u).FirstOrDefault();
                 db.Users.Remove(us);
                 db.SaveChanges();
                 return RedirectToAction("UserList");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            using (HomeRentEntities db = new HomeRentEntities())
+            {
+                User us = (from u in db.Users
+                           where u.UserId == id
+                           select u).FirstOrDefault();
+                return View(us);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User u,int id)
+        {
+            using (HomeRentEntities db = new HomeRentEntities())
+            {
+                User entity = (from ur in db.Users
+                               where ur.UserId == u.UserId
+                               select ur).FirstOrDefault();
+                db.Entry(entity).CurrentValues.SetValues(u);
+                db.SaveChanges();
+
+                return RedirectToAction("UserList");
+            }
+            
+        }
+
+        public ActionResult Block(int id)
+        {
+            string connString = @"Server=DESKTOP-N5QEM8V\SQLEXPRESS;Database=HomeRent;Integrated Security=true";
+            SqlConnection conn = new SqlConnection(connString);
+            string query = string.Format("update Users set active='{0}' where UserId='{1}'", 0, id);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query,conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+            return RedirectToAction("UserList");
+        }
+
+        // Flat 
+        public ActionResult HouseList()
+        {
+            HomeRentEntities db = new HomeRentEntities();
+            var flat= db.Flats.ToList();
+            return View(flat);
+        }
+
+        public ActionResult FlatDetails(int id)
+        {
+            using(HomeRentEntities db = new HomeRentEntities())
+            {
+                var flat = (from f in db.Flats
+                            where f.FlatId == id
+                            select f).First();
+                return View(flat);
+            }
+        }
+
+        public ActionResult FlatDelete(int id)
+        {
+            using(HomeRentEntities db = new HomeRentEntities())
+            {
+                var flat = (from f in db.Flats
+                            where f.FlatId == id
+                            select f).First();
+                db.Flats.Remove(flat);
+                db.SaveChanges();
+
+                return RedirectToAction("HouseList");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult FlatEdit(int id)
+        {
+            using (HomeRentEntities db = new HomeRentEntities())
+            {
+                var flat = (from f in db.Flats
+                            where f.FlatId == id
+                            select f).First();
+
+                return View(flat);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult FlatEdit(Flat f,int id)
+        {
+            using (HomeRentEntities db = new HomeRentEntities())
+            {
+                var flat = (from ft in db.Flats
+                            where ft.FlatId == id
+                            select ft).FirstOrDefault();
+
+                flat.FlatSize = f.FlatSize;
+                flat.Location = f.Location;
+                flat.Rent = f.Rent;
+                flat.RoomDetails = f.RoomDetails;
+
+                db.SaveChanges();
+
+                return RedirectToAction("HouseList");
             }
         }
 

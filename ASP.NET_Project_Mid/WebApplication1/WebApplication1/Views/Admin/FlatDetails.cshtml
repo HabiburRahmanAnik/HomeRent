@@ -1,0 +1,55 @@
+﻿@model WebApplication1.Models.Flat
+
+@{
+    ViewBag.Title = "Flat Details";
+}
+
+<h2>Flat Details</h2>
+
+<div>
+    <h4>Flat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FlatSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlatSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+    </dl>
+</div>
+
