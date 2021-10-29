@@ -32,16 +32,13 @@ namespace WebApplication1.Repo
             var user = db.Users.FirstOrDefault(e => u.Email == email && u.Password == password);
             return u;
         }
-        /* public int GetUserType(string email)
+        public static User GetUserType(int type)
         {
-            int type = 0;
-            int ty = (from typ in db.Users
-                     where typ.Type == Type 
-                     select typ).FirstOrDefault();
-            var user = db.Users.FirstOrDefault(e => ty.Type == Type && u.Password == password);
-            return ty;
-        } */
-
+            var u = (from us in db.Users
+                     where us.Type == type
+                     select us).FirstOrDefault();
+            return u;
+        }
 
     }
 }

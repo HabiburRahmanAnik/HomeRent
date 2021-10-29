@@ -126,7 +126,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Auth\AdminAccess.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FlatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -221,12 +220,13 @@
     <Content Include="Views\Admin\UserList.cshtml" />
     <Content Include="Views\Flat\AddFlat.cshtml" />
     <Content Include="Views\Flat\ViewFlats.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Auth\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using WebApplication1.Models.EF;
+//using WebApplication1.Models.VM;
+using WebApplication1.Models;
+
 using WebApplication1.Repo;
 
 namespace WebApplication1.Controllers
@@ -16,6 +19,12 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
 
         [HttpPost]
 
@@ -24,22 +33,31 @@ namespace WebApplication1.Controllers
             HomeRentEntities1 db = new HomeRentEntities1();
             db.Users.Add(u);
             db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        [HttpPost]
-        public ActionResult Login(User u )
-        {
-            var user = UserRepository.Authenticate(u.Email, u.Password);
-            if (user != null)
-            {
-                FormsAuthentication.SetAuthCookie(user.Email,true);
-                return RedirectToAction("Login", "Flat");
-
-            }
-            ViewBag.Message = "Invalid User Email or pass";
             return RedirectToAction("Login");
         }
-       
-       
+        [HttpPost]
+          public ActionResult Login(User u )
+          {
+              var user = UserRepository.Authenticate(u.Email, u.Password);
+              if (user != null)
+              {
+                  FormsAuthentication.SetAuthCookie(user.Email,true);
+
+                if (user.Type==1)
+                {
+                    return RedirectToAction("AdminDashboard", "Admin");
+
+                }
+                else
+                    ViewBag.Message = "Invalid User Email or pass";
+            }
+            return RedirectToAction("Login", "User");
+
+
+        }
+
+
+
+
     }
 }
