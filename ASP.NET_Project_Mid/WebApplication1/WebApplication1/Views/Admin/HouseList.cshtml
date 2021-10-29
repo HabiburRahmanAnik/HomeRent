@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApplication1.Models.Flat>
+
+@{
+    ViewBag.Title = "HouseList";
+}
+
+<h2>House List</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FlatSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rent)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlatSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rent)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "FlatEdit", new { id=item.FlatId }) |
+            @Html.ActionLink("Details", "FlatDetails", new { id=item.FlatId }) |
+            @Html.ActionLink("Delete", "FlatDelete", new { id=item.FlatId })
+        </td>
+    </tr>
+}
+
+</table>

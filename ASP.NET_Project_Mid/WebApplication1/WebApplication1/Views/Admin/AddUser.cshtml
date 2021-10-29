@@ -20,8 +20,12 @@
         <label>Password</label>
         <input type="password" name="Password" class="form-control" />
     </div>
-
     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label>Active</label>
+        <input type="number" name="active" class="form-control" />
+    </div>
+    @Html.ValidationMessageFor(m => m.active, "", new { @class = "text-danger" })
     <div class="form-group">
         <label>Type</label>
         <select name="Type" class="form-control">

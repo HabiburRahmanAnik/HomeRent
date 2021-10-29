@@ -15,9 +15,9 @@ namespace WebApplication1.Models
     public partial class BookingDetail
     {
         public int Id { get; set; }
-        public int FlatId { get; set; }
-        public int BookingId { get; set; }
-        public int Rent { get; set; }
+        public Nullable<int> FlatId { get; set; }
+        public Nullable<int> BookingId { get; set; }
+        public Nullable<int> Rent { get; set; }
     
         public virtual Booking Booking { get; set; }
         public virtual Flat Flat { get; set; }

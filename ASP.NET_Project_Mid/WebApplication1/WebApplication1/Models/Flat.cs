@@ -24,7 +24,7 @@ namespace WebApplication1.Models
         public string Location { get; set; }
         public string RoomDetails { get; set; }
         public string Rent { get; set; }
-        public int UserId { get; set; }
+        public Nullable<int> UserId { get; set; }
     
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual BookingDetail BookingDetail { get; set; }
