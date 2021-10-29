@@ -1,36 +1,46 @@
-﻿
+﻿@model IEnumerable<WebApplication1.Models.User>
 
 @{
-    ViewBag.Title = "User List";
+    ViewBag.Title = "UserList";
 }
 
 <h2>UserList</h2>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Type</th>
-            <th>Action</th>
-        </tr>
-        
-    </thead>
+<p>
+    <a href="/admin/addUser" class="btn btn-primary">Add User</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>Action</th>
+    </tr>
 
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>Anik</td>
-            <td>anik@gmail.com</td>
-            <td>admin</td>
-            <td>
-                <a href="/admin/edit/id?" class="btn btn-info">Edit</a>
-                <a href="/admin/delete/id?" class="btn btn-danger">Delete</a>
-                <a href="/admin/block/id?" class="btn btn-warning">Block</a>
-                <a href="/admin/viewDetails/id?" class="btn btn-success">Edit</a>
-            </td>
-        </tr>
-    </tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            <a href="/admin/edit?id=@item.UserId" class="btn btn-info">Edit</a>
+            <a href="/admin/delete?id=@item.UserId" class="btn btn-danger">Delete</a>
+            <a href="/admin/block?id=@item.UserId" class="btn btn-warning">Block</a>
+            <a href="/admin/viewDetails?id=@item.UserId" class="btn btn-success">Edit</a>
+        </td>
+    </tr>
+}
 
 </table>
