@@ -13,7 +13,7 @@ namespace WebApplication1.Repo
         {
             db = new HomeRentEntities1();
         }
-        public FlatModel Get(int FlatId)
+        public static FlatModel Get(int FlatId)
         {
             var f = (from fl in db.Flats
                      where fl.FlatId == FlatId

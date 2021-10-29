@@ -7,6 +7,7 @@ using WebApplication1.Repo;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize]
     public class FlatController : Controller
     {
         // GET: Flat

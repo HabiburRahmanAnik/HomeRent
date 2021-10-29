@@ -159,4 +159,3 @@ C:\RandomTest\HomeRent\ASP.NET_Project_Mid\WebApplication1\WebApplication1\bin\S
 C:\RandomTest\HomeRent\ASP.NET_Project_Mid\WebApplication1\WebApplication1\bin\Newtonsoft.Json.xml
 C:\RandomTest\HomeRent\ASP.NET_Project_Mid\WebApplication1\WebApplication1\bin\Antlr3.Runtime.pdb
 C:\RandomTest\HomeRent\ASP.NET_Project_Mid\WebApplication1\WebApplication1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\RandomTest\HomeRent\ASP.NET_Project_Mid\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
