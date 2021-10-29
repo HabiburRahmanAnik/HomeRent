@@ -8,10 +8,10 @@ namespace WebApplication1.Repo
 {
     public class FlatRepository
     {
-        static HomeRentEntities1 db;
+        static HomeRentEntities db;
         static FlatRepository()
         {
-            db = new HomeRentEntities1();
+            db = new HomeRentEntities();
         }
         public static FlatModel Get(int FlatId)
         {

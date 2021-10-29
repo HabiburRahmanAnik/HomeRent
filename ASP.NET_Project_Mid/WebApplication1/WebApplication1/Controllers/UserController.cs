@@ -15,6 +15,7 @@ namespace WebApplication1.Controllers
     public class UserController : Controller
     {
         // GET: User
+        
         public ActionResult Registration()
         {
             return View();
@@ -30,7 +31,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Registration(User u)
         {
-            HomeRentEntities1 db = new HomeRentEntities1();
+            HomeRentEntities db = new HomeRentEntities();
             db.Users.Add(u);
             db.SaveChanges();
             return RedirectToAction("Login");

@@ -38,12 +38,12 @@
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="int" Nullable="false" />
-          <Property Name="Address" Type="nchar" MaxLength="100" Nullable="false" />
-          <Property Name="Image" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
           <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Booking_Flats">
@@ -160,12 +160,12 @@
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Users" FromRole="Users" ToRole="Booking" />
           <NavigationProperty Name="Flats" Relationship="Self.FK_Flats_Users" FromRole="Users" ToRole="Flats" />
@@ -218,7 +218,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HomeRentEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HomeRentEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bookings" EntityType="Self.Booking" />
           <EntitySet Name="BookingDetails" EntityType="Self.BookingDetail" />
           <EntitySet Name="Flats" EntityType="Self.Flat" />
@@ -245,7 +245,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HomeRentModelStoreContainer" CdmEntityContainer="HomeRentEntities1">
+        <EntityContainerMapping StorageEntityContainer="HomeRentModelStoreContainer" CdmEntityContainer="HomeRentEntities">
           <EntitySetMapping Name="Bookings">
             <EntityTypeMapping TypeName="HomeRentModel.Booking">
               <MappingFragment StoreEntitySet="Booking">

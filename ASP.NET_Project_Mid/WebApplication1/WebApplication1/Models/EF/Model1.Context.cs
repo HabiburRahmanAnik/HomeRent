@@ -13,10 +13,10 @@ namespace WebApplication1.Models.EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HomeRentEntities1 : DbContext
+    public partial class HomeRentEntities : DbContext
     {
-        public HomeRentEntities1()
-            : base("name=HomeRentEntities1")
+        public HomeRentEntities()
+            : base("name=HomeRentEntities")
         {
         }
     

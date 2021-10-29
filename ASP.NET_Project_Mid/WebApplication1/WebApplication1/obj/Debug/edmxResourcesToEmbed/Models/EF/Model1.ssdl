@@ -33,12 +33,12 @@
       <PropertyRef Name="UserId" />
     </Key>
     <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="Password" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Phone" Type="int" Nullable="false" />
-    <Property Name="Address" Type="nchar" MaxLength="100" Nullable="false" />
-    <Property Name="Image" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" />
     <Property Name="Type" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_Booking_Flats">

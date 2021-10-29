@@ -9,10 +9,10 @@ namespace WebApplication1.Repo
 {
     public class UserRepository
     {
-        static HomeRentEntities1 db;
+        static HomeRentEntities db;
         static UserRepository()
         {
-            db = new HomeRentEntities1();
+            db = new HomeRentEntities();
         }
 
         public static User Get(string email)
