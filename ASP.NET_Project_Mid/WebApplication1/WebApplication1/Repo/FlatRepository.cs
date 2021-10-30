@@ -1,18 +1,17 @@
-﻿using System;
+﻿using WebApplication1.Models.EF;
+using WebApplication1.Models.VM;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WebApplication1.Models;
-using WebApplication1.Models.VM;
 
 namespace WebApplication1.Repo
 {
     public class FlatRepository
     {
-        static HomeRentEntities db;
+        static HomeRentEntities1 db;
         static FlatRepository()
         {
-            db = new HomeRentEntities();
+            db = new HomeRentEntities1();
         }
         public static FlatModel Get(int FlatId)
         {

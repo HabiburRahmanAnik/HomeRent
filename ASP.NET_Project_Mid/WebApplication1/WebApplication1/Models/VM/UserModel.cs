@@ -16,5 +16,6 @@ namespace WebApplication1.Models.VM
         public string Address { get; set; }
         public string Image { get; set; }
         public int Type { get; set; }
+
     }
 }

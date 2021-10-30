@@ -1,5 +1,4 @@
-﻿@model WebApplication1.Models.Flat
-
+﻿@model WebApplication1.Models.EF.Flat
 @{
     ViewBag.Title = "AddFlat";
 }
@@ -8,25 +7,25 @@
 
 <form action="/owner/addflat" method="post">
     <div class="form-group">
-        FlatSize: <input type="text" name="flatSize"  class="form-control">
+        FlatSize: <input type="text" name="flatSize" class="form-control">
     </div>
     @Html.ValidationMessageFor(m => m.FlatSize, "", new { @class = "text-danger" })
-   
+
     <div class="form-group">
-        Location: <input type="text" name="location"  class="form-control">
+        Location: <input type="text" name="location" class="form-control">
     </div>
     @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
-   
+
     <div class="form-group">
         RoomDetails: <input type="text" name="roomDetails" class="form-control" />
     </div>
     @Html.ValidationMessageFor(m => m.RoomDetails, "", new { @class = "text-danger" })
-   
+
     <div class="form-group">
         Rent: <input type="text" name="rent" class="form-control" />
     </div>
     @Html.ValidationMessageFor(m => m.Rent, "", new { @class = "text-danger" })
-   
+
 
     <input type="submit" value="Add Flat" class="btn btn-primary" />
 </form>

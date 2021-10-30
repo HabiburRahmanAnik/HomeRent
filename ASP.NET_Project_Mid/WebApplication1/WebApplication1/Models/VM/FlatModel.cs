@@ -13,5 +13,6 @@ namespace WebApplication1.Models.VM
         public string RoomDetails { get; set; }
         public string Rent { get; set; }
         public int UserId { get; set; }
+
     }
 }

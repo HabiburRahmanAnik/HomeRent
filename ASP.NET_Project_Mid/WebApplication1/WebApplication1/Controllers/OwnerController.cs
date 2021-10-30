@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-<<<<<<< HEAD
-using WebApplication1.Models;
+using WebApplication1.Models.EF;
 
 namespace WebApplication1.Controllers
 {
@@ -19,13 +18,13 @@ namespace WebApplication1.Controllers
         //
         public ActionResult FlatList()
         {
-            HomeRentEntities db = new HomeRentEntities();
+            HomeRentEntities1 db = new HomeRentEntities1();
             var flat = from fl in db.Flats
                        select fl;
 
             return View(flat.ToList());
         }
-        
+
         //
         [HttpGet]
         public ActionResult AddFlat()
@@ -38,7 +37,7 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                HomeRentEntities db = new HomeRentEntities();
+                HomeRentEntities1 db = new HomeRentEntities1();
                 db.Flats.Add(flat);
                 db.SaveChanges();
                 return RedirectToAction("FlatList");
@@ -48,9 +47,9 @@ namespace WebApplication1.Controllers
         //
         public ActionResult CustomerDetails()
         {
-            HomeRentEntities db = new HomeRentEntities();
+            HomeRentEntities1 db = new HomeRentEntities1();
             var cud = from c in db.Users
-                       select c;
+                      select c;
 
             return View(cud);
         }
@@ -67,7 +66,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Delete(int id)
         {
-            using (HomeRentEntities db = new HomeRentEntities())
+            using (HomeRentEntities1 db = new HomeRentEntities1())
             {
                 User us = (from u in db.Users
                            where u.UserId == id
@@ -81,7 +80,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            using (HomeRentEntities db = new HomeRentEntities())
+            using (HomeRentEntities1 db = new HomeRentEntities1())
             {
                 User us = (from u in db.Users
                            where u.UserId == id
@@ -93,7 +92,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Edit(User u, int id)
         {
-            using (HomeRentEntities db = new HomeRentEntities())
+            using (HomeRentEntities1 db = new HomeRentEntities1())
             {
                 User entity = (from ur in db.Users
                                where ur.UserId == u.UserId
@@ -105,18 +104,5 @@ namespace WebApplication1.Controllers
             }
 
         }
-=======
-
-namespace WebApplication1.Controllers
-{
-    [Authorize]
-    public class OwnerController : Controller
-    {
-        // GET: Owner
-        public ActionResult Index()
-        {
-            return View();
-        }
->>>>>>> 6b4866cfd25c6f2684c23979ccb78fa719bb3366
     }
 }

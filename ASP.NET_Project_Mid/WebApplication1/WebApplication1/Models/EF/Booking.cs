@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace WebApplication1.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -15,11 +15,10 @@ namespace WebApplication1.Models
     public partial class Booking
     {
         public int BookingId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<int> FlatId { get; set; }
+        public int UserId { get; set; }
+        public int FlatId { get; set; }
     
         public virtual Flat Flat { get; set; }
         public virtual User User { get; set; }
-        public virtual BookingDetail BookingDetail { get; set; }
     }
 }

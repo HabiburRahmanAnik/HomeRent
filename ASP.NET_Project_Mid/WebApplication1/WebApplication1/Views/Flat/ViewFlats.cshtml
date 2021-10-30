@@ -1,16 +1,19 @@
-﻿@model IEnumerable<WebApplication1.Models.EF.Flat>
+﻿@model IEnumerable<WebApplication1.Models.VM.FlatModel>
 
 @{
-    ViewBag.Title = "FlatList";
+    ViewBag.Title = "ViewFlats";
 }
 
-<h2>FlatList</h2>
+<h2>ViewFlats</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FlatId)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.FlatSize)
         </th>
@@ -32,6 +35,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.FlatId)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.FlatSize)
         </td>
         <td>
@@ -47,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.UserId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FlatId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FlatId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FlatId })
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

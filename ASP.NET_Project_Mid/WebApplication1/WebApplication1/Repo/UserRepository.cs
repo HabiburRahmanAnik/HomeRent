@@ -1,17 +1,18 @@
-﻿using System;
+﻿using WebApplication1.Models.EF;
+using WebApplication1.Models.VM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WebApplication1.Models;
 
 namespace WebApplication1.Repo
 {
     public class UserRepository
     {
-        static HomeRentEntities db;
+        static HomeRentEntities1 db;
         static UserRepository()
         {
-            db = new HomeRentEntities();
+            db = new HomeRentEntities1();
         }
 
         public static User Get(string email)
@@ -22,7 +23,7 @@ namespace WebApplication1.Repo
             return u;
         }
 
-        public static User Authenticate(string email, string password)
+        public static User Authenticate(string email,string password)
         {
             var u = (from us in db.Users
                      where us.Email == email &&
@@ -31,5 +32,7 @@ namespace WebApplication1.Repo
             var user = db.Users.FirstOrDefault(e => u.Email == email && u.Password == password);
             return u;
         }
+
+
     }
 }

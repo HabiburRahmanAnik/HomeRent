@@ -5,17 +5,17 @@
       <PropertyRef Name="BookingId" />
     </Key>
     <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserId" Type="int" />
-    <Property Name="FlatId" Type="int" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="FlatId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BookingDetails">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FlatId" Type="int" />
-    <Property Name="BookingId" Type="int" />
-    <Property Name="Rent" Type="int" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="FlatID" Type="int" Nullable="false" />
+    <Property Name="BookingId" Type="int" Nullable="false" />
+    <Property Name="Rent" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Flats">
     <Key>
@@ -26,34 +26,23 @@
     <Property Name="Location" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="RoomDetails" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="Rent" Type="nchar" MaxLength="100" Nullable="false" />
-    <Property Name="UserId" Type="int" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
+    <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="UserId" />
     </Key>
     <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="nchar" MaxLength="50" />
-    <Property Name="Email" Type="nchar" MaxLength="50" />
-    <Property Name="Password" Type="nchar" MaxLength="15" />
-    <Property Name="Phone" Type="int" />
-    <Property Name="Address" Type="nchar" MaxLength="100" />
-    <Property Name="Image" Type="nchar" MaxLength="100" />
-    <Property Name="Type" Type="int" />
-    <Property Name="active" Type="int" />
+    <Property Name="Username" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="Phone" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="Image" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_Booking_Flats">
-    <End Role="Flats" Type="Self.Flats" Multiplicity="0..1" />
+    <End Role="Flats" Type="Self.Flats" Multiplicity="1" />
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Flats">
@@ -65,7 +54,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Booking_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
@@ -76,32 +65,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_BookingDetails_Booking">
-    <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
-    <End Role="BookingDetails" Type="Self.BookingDetails" Multiplicity="0..1" />
+  <Association Name="FK_BookingDetails_BookingDetails">
+    <End Role="BookingDetails" Type="Self.BookingDetails" Multiplicity="1" />
+    <End Role="BookingDetails1" Type="Self.BookingDetails" Multiplicity="0..1" />
     <ReferentialConstraint>
-      <Principal Role="Booking">
-        <PropertyRef Name="BookingId" />
+      <Principal Role="BookingDetails">
+        <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="BookingDetails">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_BookingDetails_Flats">
-    <End Role="Flats" Type="Self.Flats" Multiplicity="1" />
-    <End Role="BookingDetails" Type="Self.BookingDetails" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Flats">
-        <PropertyRef Name="FlatId" />
-      </Principal>
-      <Dependent Role="BookingDetails">
-        <PropertyRef Name="Id" />
+      <Dependent Role="BookingDetails1">
+        <PropertyRef Name="ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Flats_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Flats" Type="Self.Flats" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
@@ -116,7 +93,6 @@
     <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BookingDetails" EntityType="Self.BookingDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Flats" EntityType="Self.Flats" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Booking_Flats" Association="Self.FK_Booking_Flats">
       <End Role="Flats" EntitySet="Flats" />
@@ -126,13 +102,9 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Booking" EntitySet="Booking" />
     </AssociationSet>
-    <AssociationSet Name="FK_BookingDetails_Booking" Association="Self.FK_BookingDetails_Booking">
-      <End Role="Booking" EntitySet="Booking" />
+    <AssociationSet Name="FK_BookingDetails_BookingDetails" Association="Self.FK_BookingDetails_BookingDetails">
       <End Role="BookingDetails" EntitySet="BookingDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BookingDetails_Flats" Association="Self.FK_BookingDetails_Flats">
-      <End Role="Flats" EntitySet="Flats" />
-      <End Role="BookingDetails" EntitySet="BookingDetails" />
+      <End Role="BookingDetails1" EntitySet="BookingDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_Flats_Users" Association="Self.FK_Flats_Users">
       <End Role="Users" EntitySet="Users" />

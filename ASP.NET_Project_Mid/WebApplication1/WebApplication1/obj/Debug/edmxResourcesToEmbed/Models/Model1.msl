@@ -54,7 +54,6 @@
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="active" ColumnName="active" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
