@@ -4,10 +4,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Auth;
 using WebApplication1.Models;
+using WebApplication1.Models.Classes;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -80,19 +83,19 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(User u,int id)
+        public ActionResult Edit(User u)
         {
-            using (HomeRentEntities db = new HomeRentEntities())
-            {
-                User entity = (from ur in db.Users
-                               where ur.UserId == u.UserId
-                               select ur).FirstOrDefault();
-                db.Entry(entity).CurrentValues.SetValues(u);
-                db.SaveChanges();
 
-                return RedirectToAction("UserList");
-            }
-            
+            string connString = @"Server=DESKTOP-N5QEM8V\SQLEXPRESS;Database=HomeRent;Integrated Security=true";
+            SqlConnection conn = new SqlConnection(connString);
+            string query = string.Format("update Users set Username='{0}' Email='{1}' active='{2}' Type='{3}' where UserId='{4}'",u.Username,u.Email,u.active,u.Type,u.UserId);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+            return RedirectToAction("UserList");
+
         }
 
         public ActionResult Block(int id)

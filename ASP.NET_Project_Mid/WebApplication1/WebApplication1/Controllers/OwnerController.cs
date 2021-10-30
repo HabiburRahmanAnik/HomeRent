@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+<<<<<<< HEAD
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -104,5 +105,18 @@ namespace WebApplication1.Controllers
             }
 
         }
+=======
+
+namespace WebApplication1.Controllers
+{
+    [Authorize]
+    public class OwnerController : Controller
+    {
+        // GET: Owner
+        public ActionResult Index()
+        {
+            return View();
+        }
+>>>>>>> 6b4866cfd25c6f2684c23979ccb78fa719bb3366
     }
 }
